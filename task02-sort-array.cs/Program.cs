@@ -10,32 +10,27 @@ public class Program
 {
     public static string[] SortStringArray(string[] array)
     {
-        // ИЗМЕНИТЕ КОД ЭТОГО МЕТОДА.
-        string[] expectedResult = null;
-        int a = Convert.ToInt32(array);
-        int b = Convert.ToInt32(expectedResult);
-        int[] ar = new int[a];
-        int[] ex = new int[b];
+        if (array == null)
+            throw new ArgumentNullException();
 
-        for (int i = 0; i <= ar.Length; i++)
+        for (int i = 0; i < array.Length; i++)
         {
-            for (int j = 0; j <= ex.Length; j++)
+            for (int j = array.Length - 1; j > i; j--)
             {
-                if (ar[i] <= ex[j])
+                if (array[i].ToCharArray().Count() > array[j].ToCharArray().Count())
                 {
-                    int x = ex[j];
-                    ar[i] = ex[j];
-                    ar[i] = x;
+                    string x = array[j];
+                    array[j] = array[i];
+                    array[i] = x;
                 }
             }
-
         }
         return array;
     }
 
-    // ----- ЗАПРЕЩЕНО ИЗМЕНЯТЬ КОД МЕТОДОВ, КОТОРЫЕ НАХОДЯТСЯ НИЖЕ -----
+        // ----- ЗАПРЕЩЕНО ИЗМЕНЯТЬ КОД МЕТОДОВ, КОТОРЫЕ НАХОДЯТСЯ НИЖЕ -----
 
-    public static void Main()
+        public static void Main()
     {
         Console.WriteLine("Task is done when all test cases are correct:");
 
@@ -101,6 +96,7 @@ public class Program
         {
             Console.WriteLine(incorrectCaseTemplate, testCaseNumber);
         }
+        
     }
 
     private static string correctCaseTemplate = "Case #{0} is correct.";
